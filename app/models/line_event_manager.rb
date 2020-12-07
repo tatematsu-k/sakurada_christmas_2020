@@ -1,0 +1,18 @@
+class LineEventManager < ApplicationModel
+  attribute :event
+
+  def call
+    case event
+    when Line::Bot::Event::Follow
+      Follow.factory(event)
+    when Line::Bot::Event::Message
+      Message.factory(event)
+    end
+  end
+
+  private
+
+  def line_source
+    @line_source ||= LineSource.factory(event["source"])
+  end
+end
