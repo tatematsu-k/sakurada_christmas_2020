@@ -162,6 +162,7 @@ GEM
       rexml
     launchy (2.5.0)
       addressable (~> 2.7)
+    line-bot-api (1.16.0)
     loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -232,6 +233,7 @@ DEPENDENCIES
   dynomite
   jets
   launchy
+  line-bot-api
   mysql2 (~> 0.5.2)
   puma
   rack
