@@ -1,4 +1,4 @@
-module LineEventManager
+class LineEventManager
   class Message < Base
     attribute :reply_token, String
     attribute :id, String

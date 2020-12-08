@@ -1,4 +1,4 @@
-module LineEventManager
+class LineEventManager
   class Follow < Base
     def self.factory(event)
 

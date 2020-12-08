@@ -1,4 +1,4 @@
-module LineSource
+class LineSource
   class Base < ApplicationModel
     attribute :type
     attribute :userId

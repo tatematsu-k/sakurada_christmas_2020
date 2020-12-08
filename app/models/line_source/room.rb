@@ -1,4 +1,4 @@
-module LineSource
+class LineSource
   class Room < Base
     attribute :roomId
 
