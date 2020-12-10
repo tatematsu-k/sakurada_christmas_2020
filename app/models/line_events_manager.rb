@@ -1,5 +1,5 @@
 class LineEventsManager < ApplicationModel
-  attribute :events, Array
+  attribute :events
 
   def call
     events.each do |event|
