@@ -4,7 +4,7 @@ class LineEventManager < ApplicationModel
   def call
     case event
     when Line::Bot::Event::Follow
-      Follow.factory(event).call
+      Follow.factory(event, line_source: line_source).call
     when Line::Bot::Event::Message
       Message.factory(event).call
     end
