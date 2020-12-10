@@ -5,11 +5,11 @@ class WebhooksController < ApplicationController
     body = request.body.read
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
-    unless client.validate_signature(body, signature)
+    unless line_client.validate_signature(body, signature)
       head 470
     end
 
-    LineEventManager.new(events: client.parse_events_from(body)).call
+    LineEventsManager.new(events: line_client.parse_events_from(body)).call
 
     head 200
   end
