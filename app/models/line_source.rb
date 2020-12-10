@@ -7,7 +7,7 @@ class LineSource
 
   def self.factory(**event)
     klass =
-      case event["type"]
+      case event[:type]
       when "user"
         User
       when "group"
@@ -15,8 +15,8 @@ class LineSource
       when "room"
         Room
       else
-        raise UnsupportedTypeError(type: event["type"])
+        raise UnsupportedTypeError(type: event[:type])
       end
-    klass.new(**args.deep_symbolize_keys)
+    klass.new(**event)
   end
 end
