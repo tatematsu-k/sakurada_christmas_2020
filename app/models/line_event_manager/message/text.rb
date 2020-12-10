@@ -1,6 +1,6 @@
 class LineEventManager
   class Message::Text < Message
-    attribute :text, String
+    attribute :text, :string
 
     def call
       client.reply_message(reply_token, message_attributes)
