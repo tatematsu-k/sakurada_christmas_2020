@@ -11,7 +11,7 @@ class WebhooksController < ApplicationController
 
     LineEventsManager.new(events: line_client.parse_events_from(body)).call
 
-    head 200
+    render json: { status: 200 }
   end
 
   private

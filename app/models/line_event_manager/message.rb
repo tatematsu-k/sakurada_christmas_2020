@@ -1,7 +1,7 @@
 class LineEventManager
   class Message < Base
-    attribute :reply_token, String
-    attribute :id, String
+    attribute :reply_token, :string
+    attribute :id, :string
 
     def self.factory(event)
       case event.type

@@ -3,7 +3,8 @@ class LineEventManager
     attribute :text, :string
 
     def call
-      client.reply_message(reply_token, message_attributes)
+      p "request with: #{message_attributes}"
+      p client.reply_message(reply_token, message_attributes)
     end
 
     private
