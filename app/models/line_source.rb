@@ -5,9 +5,9 @@ class LineSource
     end
   end
 
-  def self.factory(**args)
+  def self.factory(**event)
     klass =
-      case args["type"]
+      case event["type"]
       when "user"
         User
       when "group"
@@ -15,7 +15,7 @@ class LineSource
       when "room"
         Room
       else
-        raise UnsupportedTypeError(type: args["type"])
+        raise UnsupportedTypeError(type: event["type"])
       end
     klass.new(**args.deep_symbolize_keys)
   end

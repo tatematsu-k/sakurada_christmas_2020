@@ -13,6 +13,6 @@ class LineEventManager < ApplicationModel
   private
 
   def line_source
-    @line_source ||= LineSource.factory(event["source"])
+    @line_source ||= LineSource.factory(**event["source"])
   end
 end
