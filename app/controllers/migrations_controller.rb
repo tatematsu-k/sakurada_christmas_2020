@@ -5,7 +5,7 @@ class MigrationsController < ApplicationController
   before_action :authenticate
 
   def create
-    run_cmd!("jets db:create db:migrate")
+    run_cmd!("jets db:migrate")
 
     render json: { status: "success" }
   end
