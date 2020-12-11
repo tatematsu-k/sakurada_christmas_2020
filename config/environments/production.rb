@@ -7,4 +7,8 @@ Jets.application.configure do
   # Docs: http://rubyonjets.com/docs/email-sending/
   # config.action_mailer.raise_delivery_errors = false
   config.ruby.lazy_load = true
+  config.function.vpc_config = {
+    security_group_ids: ENV["SECURITY_GROUP_IDS"].split(","),
+    subnet_ids: ENV["SUBNET_IDS"].split(","),
+  }
 end
