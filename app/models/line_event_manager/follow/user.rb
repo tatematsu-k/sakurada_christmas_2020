@@ -11,7 +11,9 @@ class LineEventManager
 
     def call
       p "request with: #{message_attributes}"
-      p client.reply_message(reply_token, message_attributes)
+      res = client.reply_message(reply_token, message_attributes)
+      p res
+      p res.body
     end
 
     private
