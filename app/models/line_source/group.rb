@@ -6,7 +6,7 @@ class LineSource
 
     def save!
       ActiveRecord::Base.transaction do
-        ::User.find_or_create_by!(line_uid: user_id)
+        ::User.find_or_create_by!(line_uid: user_id) if user_id
         ::Group.find_or_create_by!(group_uid: group_id)
       end
     end
