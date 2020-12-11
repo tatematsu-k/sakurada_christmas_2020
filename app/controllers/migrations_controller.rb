@@ -22,7 +22,8 @@ class MigrationsController < ApplicationController
 
   def run_cmd!(cmd)
     Open3.capture3(cmd).tap do |stdout,stderr,status|
-      puts stdout
+      p stdout
+      p stderr
       raise CommandError, "#{cmd} is failed." unless status.success?
     end
   end
