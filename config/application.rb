@@ -62,4 +62,11 @@ Jets.application.configure do
   # config.logger = Jets::Logger.new($strerr)
 
   config.controllers.default_protect_from_forgery = false
+
+  if ENV["SECURITY_GROUP_IDS"] && ENV["SUBNET_IDS"]
+    config.function.vpc_config = {
+      security_group_ids: ENV["SECURITY_GROUP_IDS"].split(","),
+      subnet_ids: ENV["SUBNET_IDS"].split(","),
+    }
+  end
 end
