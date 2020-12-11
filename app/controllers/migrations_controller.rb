@@ -1,6 +1,7 @@
 require 'open3'
 class MigrationsController < ApplicationController
   InvalidTokenError = Class.new(StandardError)
+  CommandError = Class.new(StandardError)
   before_action :authenticate
 
   def create
