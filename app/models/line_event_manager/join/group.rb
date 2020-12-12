@@ -23,11 +23,6 @@ class LineEventManager
       @group ||= Group.find_by!(group_uid: group_id)
     end
 
-    def save!
-      line_user_uids.each do |user_uid|
-      end
-    end
-
     def client
       LineClientFactory.get
     end
@@ -72,20 +67,6 @@ class LineEventManager
         準備ができたらみんなで「プレゼント交換開始！」ってこのグループに送ってね！
       EOS
         .chomp
-    end
-
-    def line_user_uids
-      conn = Faraday.new(
-        url: 'https://api.line.me',
-        headers: {
-          'Content-Type' => 'application/json',
-          'Authorization' => "Bearer #{ENV['LINE_CHANNEL_TOKEN']}"
-        }
-      )
-
-      res = conn.get("v2/bot/group/#{group_id}/members/ids")
-
-      p JSON.parse(res.body)
     end
   end
 end
