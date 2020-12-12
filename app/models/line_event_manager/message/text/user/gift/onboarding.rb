@@ -18,7 +18,7 @@ class LineEventManager
     def message_attributes
       first_text = <<~EOS
         了解です！
-        そしたら次のステップでプレゼントの情報を教えてください！
+        次のステップでプレゼントの情報を教えてください！
         間違えた場合にはキャンセルもできるから安心してください！
 
         ステップ1:
@@ -31,13 +31,15 @@ class LineEventManager
         郵送する時とかはその旨書いてあげてください！
       EOS
         .chomp
-      second_text = <<~EOS
-        そしたらステップ1です！
-        櫻田LINEに送るようのギフトに関する説明文をメッセージで送ってください！
+      second_text =
+        <<~EOS
+          そしたらステップ1です！
+          櫻田LINEに送るようのギフトに関する説明文をメッセージで送ってください！
 
-        ※ もしキャンセルしたい時には「キャンセル」と送ってください！キャンセルした場合は最初からやり直しになります#{0x10007C.chr('UTF-8')}
-      EOS
-        .chomp
+          ※ 後から登録した内容を確認したくなった場合は「#{Message::Text::User::Gift::Confirm::KEYWORD}」と送ってください！
+          ※ もしキャンセルしたい時には「#{Message::Text::User::Gift::Cancel::KEYWORD}」と送ってください！キャンセルした場合は最初からやり直しになります#{0x10007C.chr('UTF-8')}
+        EOS
+          .chomp
 
       [
         {

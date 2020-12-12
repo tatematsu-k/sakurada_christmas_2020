@@ -1,12 +1,8 @@
 class LineEventManager
-  class Message::Text::User::AboutMe < Message::Text::User
+  class Message::Text::User::AboutMe < Message::Text::User::Base
     MATCH_STRINGS = [
       /立松/, /年齢/, /体重/, /血液型/, /大学/, /好きな食べ物/
     ]
-
-    def self.factory(**args)
-      new(**args)
-    end
 
     def self.match?(text, **_args)
       MATCH_STRINGS.any? do |reg|

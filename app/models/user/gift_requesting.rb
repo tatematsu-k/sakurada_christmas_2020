@@ -8,4 +8,12 @@ class User::GiftRequesting < ApplicationRecord
           class_name: "User::GiftRequesting::PrivateMessageUsing",
           inverse_of: :user_gift_requesting,
           foreign_key: :user_gift_requesting_id
+
+  def group_messaged?
+    group_message_using.present?
+  end
+
+  def private_messaged?
+    private_message_using.present?
+  end
 end

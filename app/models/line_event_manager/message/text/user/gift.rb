@@ -1,5 +1,5 @@
 class LineEventManager
-  class Message::Text::User::Gift < Message::Text::User
+  class Message::Text::User::Gift < Message::Text::User::Base
     CANDIDATE_CLASSES = [Onboarding]
 
     def self.factory(text: text, line_source: line_source, **args)
