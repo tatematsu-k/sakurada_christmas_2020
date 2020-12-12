@@ -1,10 +1,21 @@
 class LineEventManager
-  class Message::Text::User::Gift::Onboarding
-    def self.match?(text)
-      text == "交換プレゼントを送るよ！"
+  class Message::Text::User::Gift::Onboarding < Message::Text::User::Gift::Base
+    KEYWORD = "交換プレゼントを送るよ！"
+
+    def self.match?(text, **_args)
+      text == KEYWORD
     end
 
-    def self.message_attributes
+    def call
+      ::User.transaction do
+        user.create_gift_requesting!
+        super
+      end
+    end
+
+    private
+
+    def message_attributes
       first_text = <<~EOS
         了解です！
         そしたら次のステップでプレゼントの情報を教えてください！

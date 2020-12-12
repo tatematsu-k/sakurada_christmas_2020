@@ -1,16 +1,20 @@
 class LineEventManager
-  class Message::Text::User::AboutMe
+  class Message::Text::User::AboutMe < Message::Text::User
     MATCH_STRINGS = [
       /立松/, /年齢/, /体重/, /血液型/, /大学/, /好きな食べ物/
     ]
 
-    def self.match?(text)
+    def self.factory(**args)
+      new(**args)
+    end
+
+    def self.match?(text, **_args)
       MATCH_STRINGS.any? do |reg|
         text.match?(reg)
       end
     end
 
-    def self.message_attributes(text)
+    def message_attributes
       reply_text =
         case text
         when /年齢/

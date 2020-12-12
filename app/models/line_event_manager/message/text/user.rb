@@ -1,7 +1,13 @@
 class LineEventManager
   class Message::Text::User < Message::Text
-    def self.factory(**args)
-      new(**args)
+    delegate :user, to: :line_source
+
+    def self.factory(text:, line_source:, **args)
+      klass =
+        [Gift, AboutMe, Unknown]
+          .select{ |k| k.match?(text, line_source: line_source) }
+          .first
+      klass.factory(text: text, line_source: line_source, **args)
     end
 
     def call
@@ -18,19 +24,6 @@ class LineEventManager
 
     def client
       LineClientFactory.get
-    end
-
-    def message_attributes
-      if Gift.match?(text, line_source_user: line_source)
-        Gift.message_attributes(text)
-      elsif AboutMe.match?(text)
-        AboutMe.message_attributes(text)
-      else
-        {
-          type: 'text',
-          text: "aaa",
-        }
-      end
     end
   end
 end
