@@ -5,14 +5,14 @@ class LineEventManager
     end
 
     def call
-      create!
+      create_text_message!
       p "request with: #{message_attributes}"
       p client.reply_message(reply_token, message_attributes)
     end
 
     private
 
-    def create!
+    def create_text_message!
       line_source.user.text_messages.create!(text: text)
     end
 

@@ -1,14 +1,14 @@
 class LineEventManager
   class Message::Text::Group < Message::Text
     def call
-      create!
+      create_text_message!
       p "request with: #{message_attributes}"
       p client.reply_message(reply_token, message_attributes)
     end
 
     private
 
-    def create!
+    def create_text_message!
       line_source.group.text_messages.create!(
         user: line_source.user,
         text: text,
