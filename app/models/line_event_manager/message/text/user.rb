@@ -1,5 +1,9 @@
 class LineEventManager
   class Message::Text::User < Message::Text
+    def self.factory(**args)
+      new(**args)
+    end
+
     def call
       create!
       p "request with: #{message_attributes}"
