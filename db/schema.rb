@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_043408) do
+ActiveRecord::Schema.define(version: 2020_12_12_081943) do
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_043408) do
     t.index ["user_id"], name: "index_user_gift_requestings_on_user_id", unique: true
   end
 
+  create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_user_infos_on_created_at"
+    t.index ["user_id"], name: "index_user_infos_on_user_id", unique: true
+  end
+
   create_table "user_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "text", null: false
@@ -101,5 +110,6 @@ ActiveRecord::Schema.define(version: 2020_12_12_043408) do
   add_foreign_key "user_gift_requesting_private_message_usings", "user_gift_requestings", name: "fk_user_gift_requesting_private_message_usings_1"
   add_foreign_key "user_gift_requesting_private_message_usings", "user_text_messages", name: "fk_user_gift_requesting_private_message_usings_2"
   add_foreign_key "user_gift_requestings", "users"
+  add_foreign_key "user_infos", "users"
   add_foreign_key "user_text_messages", "users"
 end
