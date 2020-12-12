@@ -1,7 +1,7 @@
 class LineEventManager
   class Message::Text::User::AboutMe < Message::Text::User::Base
     MATCH_STRINGS = [
-      /立松/, /年齢/, /身長/, /体重/, /血液型/, /大学/, /好きな食べ物/, /付き合った日/
+      /立松/, /年齢/, /誕生日/, /身長/, /体重/, /血液型/, /大学/, /好きな食べ物/, /付き合った日/, /五反田/, /馴れ初め/, /出身地/
     ]
 
     def self.match?(text, **_args)
@@ -19,6 +19,12 @@ class LineEventManager
             1993/09/25の酉年！みなさんの一つ下です〜
           EOS
             .chomp
+        when /誕生日/
+          <<~EOS
+            1993/09/25の酉年！年齢は27歳です！
+            みなさんの一つ下です〜
+          EOS
+            .chomp
         when /身長/
           <<~EOS
             身長は177cmです！
@@ -31,6 +37,14 @@ class LineEventManager
             男の子にそんなこと聞いちゃいけません！#{0x100082.chr('UTF-8')}
             最近久しぶりに体重計に乗ったらめっちゃ痩せましたw
           EOS
+            .chomp
+        when /出身地/
+          <<~EOS
+            生まれは埼玉の上尾市です！
+            でも3歳で八王子に引っ越して上尾の頃の記憶はありません笑
+            そこからはずっと八王子に住んで2年前くらいから五反田で一人暮らしはじめました
+          EOS
+            .chomp
         when /血液型/
           "B型です！"
         when /大学/
