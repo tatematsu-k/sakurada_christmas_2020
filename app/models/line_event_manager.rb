@@ -7,6 +7,8 @@ class LineEventManager < ApplicationModel
       case event
       when Line::Bot::Event::Follow
         Follow
+      when Line::Bot::Event::Unfollow
+        Unfollow
       when Line::Bot::Event::Join
         Join
       when Line::Bot::Event::Message
