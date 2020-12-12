@@ -11,7 +11,8 @@ class LineEventManager
     end
 
     def call
-      create_text_message!
+      text_message = create_text_message!
+      yield(text_message) if block_given?
       p "request with: #{message_attributes}"
       p client.reply_message(reply_token, message_attributes)
     end

@@ -1,8 +1,8 @@
 class LineEventManager
   class Message::Text::User::Gift < Message::Text::User::Base
-    CANDIDATE_CLASSES = [Cancel, Onboarding]
+    CANDIDATE_CLASSES = [PrivateMessage, GroupMessage, Onboarding, Cancel]
 
-    def self.factory(text: text, line_source: line_source, **args)
+    def self.factory(text:, line_source:, **args)
       klass =
         CANDIDATE_CLASSES
           .select { |k| k.match?(text, line_source: line_source) }
