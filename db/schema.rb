@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_023224) do
+ActiveRecord::Schema.define(version: 2020_12_12_031728) do
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -25,7 +25,26 @@ ActiveRecord::Schema.define(version: 2020_12_12_023224) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "group_uid", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_groups_on_created_at"
     t.index ["group_uid"], name: "index_groups_on_group_uid", unique: true
+  end
+
+  create_table "user_follow_unfollows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_follow_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_user_follow_unfollows_on_created_at"
+    t.index ["user_follow_id"], name: "index_user_follow_unfollows_on_user_follow_id", unique: true
+  end
+
+  create_table "user_follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_user_follows_on_created_at"
+    t.index ["user_id"], name: "index_user_follows_on_user_id", unique: true
   end
 
   create_table "user_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -39,10 +58,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_023224) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "line_uid", null: false
-    t.index ["line_uid"], name: "index_users_on_line_uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_users_on_created_at"
+    t.index ["line_uid"], name: "index_users_on_line_uid", unique: true
   end
 
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
+  add_foreign_key "user_follow_unfollows", "user_follows"
+  add_foreign_key "user_follows", "users"
   add_foreign_key "user_text_messages", "users"
 end
