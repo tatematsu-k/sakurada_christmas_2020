@@ -4,7 +4,7 @@ class LineEventManager
 
     def self.factory(text:, line_source:, **args)
       klass =
-        [Gift, AboutMe, Unknown]
+        [AboutUser, Gift, AboutMe, Unknown]
           .select{ |k| k.match?(text, line_source: line_source) }
           .first
       klass.factory(text: text, line_source: line_source, **args)
@@ -14,7 +14,9 @@ class LineEventManager
       text_message = create_text_message!
       yield(text_message) if block_given?
       p "request with: #{message_attributes}"
-      p client.reply_message(reply_token, message_attributes)
+      res = client.reply_message(reply_token, message_attributes)
+      p res
+      p res.body
     end
 
     private
