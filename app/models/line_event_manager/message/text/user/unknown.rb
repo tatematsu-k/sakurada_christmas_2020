@@ -10,6 +10,8 @@ class LineEventManager
         まだそのメッセージに反応できないです#{0x10007C.chr('UTF-8')}
         メッセージの内容によってはいろいろな反応するかもなので楽しんでください！
       EOS
+        .chomp
+
       [
         {
           type: 'text',
