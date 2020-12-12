@@ -7,7 +7,7 @@ class LineEventManager
     def self.factory(event, line_source:)
       case event.type
       when Line::Bot::Event::MessageType::Text
-        Text.new(
+        Text.factory(
           reply_token: event["replyToken"],
           id: event.message["id"],
           text: event.message["text"],

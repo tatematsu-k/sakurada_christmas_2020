@@ -2,22 +2,13 @@ class LineEventManager
   class Message::Text < Message
     attribute :text, :string
 
-    def call
-      p "request with: #{message_attributes}"
-      p client.reply_message(reply_token, message_attributes)
-    end
-
-    private
-
-    def client
-      LineClientFactory.get
-    end
-
-    def message_attributes
-      {
-        type: 'text',
-        text: text,
-      }
+    def self.factory(line_source: line_source, **args)
+      case line_source
+      when LineSource::User
+        User.new(line_source: line_source, **args)
+      when LineSource::Group
+        Group.new(line_source: line_source, **args)
+      end
     end
   end
 end
