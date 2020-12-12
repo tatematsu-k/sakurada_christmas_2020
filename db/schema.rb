@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_081943) do
+ActiveRecord::Schema.define(version: 2020_12_12_113010) do
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2020_12_12_081943) do
     t.index ["created_at"], name: "index_group_text_messages_on_created_at"
     t.index ["group_id"], name: "index_group_text_messages_on_group_id"
     t.index ["user_id"], name: "index_group_text_messages_on_user_id"
+  end
+
+  create_table "group_user_joins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_group_user_joins_on_created_at"
+    t.index ["group_id", "user_id"], name: "index_group_user_joins_on_group_id_and_user_id", unique: true
+    t.index ["group_id"], name: "index_group_user_joins_on_group_id"
+    t.index ["user_id"], name: "index_group_user_joins_on_user_id"
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -103,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_081943) do
 
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
+  add_foreign_key "group_user_joins", "groups"
+  add_foreign_key "group_user_joins", "users"
   add_foreign_key "user_follow_unfollows", "user_follows"
   add_foreign_key "user_follows", "users"
   add_foreign_key "user_gift_requesting_group_message_usings", "user_gift_requestings", name: "fk_user_gift_requesting_group_message_usings_1"
