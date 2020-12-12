@@ -1,11 +1,16 @@
 class LineEventManager
   class Message::Text::User < Message::Text
     def call
+      create!
       p "request with: #{message_attributes}"
       p client.reply_message(reply_token, message_attributes)
     end
 
     private
+
+    def create!
+      line_source.user.text_messages.create!(text: text)
+    end
 
     def client
       LineClientFactory.get
