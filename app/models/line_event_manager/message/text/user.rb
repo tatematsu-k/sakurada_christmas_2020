@@ -12,7 +12,9 @@ class LineEventManager
     end
 
     def message_attributes
-      if AboutMe.match?(text)
+      if Gift.match?(text, line_source_user: line_source)
+        Gift.message_attributes(text)
+      elsif AboutMe.match?(text)
         AboutMe.message_attributes(text)
       else
         {
