@@ -1,6 +1,6 @@
 class LineEventManager
   class Message::Text::User::Gift < Message::Text::User::Base
-    CANDIDATE_CLASSES = [Onboarding]
+    CANDIDATE_CLASSES = [Cancel, Onboarding]
 
     def self.factory(text: text, line_source: line_source, **args)
       klass =
