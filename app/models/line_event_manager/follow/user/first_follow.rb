@@ -24,7 +24,11 @@ class LineEventManager
         {
           type: 'text',
           text: second_text,
-        }
+        },
+        {
+          type: 'text',
+          text: third_text,
+        },
       ]
     end
 
@@ -40,10 +44,21 @@ class LineEventManager
     def second_text
       <<~EOS
         ご挨拶遅れました！縦だか横だか分からないと噂のよこぴーです#{0x10008D.chr('UTF-8')}
-        クリスマスのプレゼント交換用のギフトはもう購入済みですか？
+        クリスマスの交換用のプレゼントはもう購入済みですか？
         もしよかったら私が働いているgifteeでも購入可能なので使ってみてください！笑
         https://giftee.com/
+
+        他にもテキストで送れるものであれば対応できます！
+        実物で！っていう方は交換相手がわかってから郵送してもらえれば大丈夫？？？？だと思います(きっと)
       EOS
+        .chomp
+    end
+
+    def third_text
+      <<~EOS
+        プレゼントの用意ができたら「#{Message::Text::User::Gift::Onboarding::KEYWORD}」を入力してプレゼントの登録をお願いします！
+      EOS
+        .chomp
     end
   end
 end
