@@ -1,0 +1,11 @@
+class User::GiftRequesting < ApplicationRecord
+  belongs_to :user
+  has_one :group_message_using,
+          class_name: "User::GiftRequesting::GroupMessageUsing",
+          inverse_of: :user_gift_requesting,
+          foreign_key: :user_gift_requesting_id
+  has_one :private_message_using,
+          class_name: "User::GiftRequesting::PrivateMessageUsing",
+          inverse_of: :user_gift_requesting,
+          foreign_key: :user_gift_requesting_id
+end
