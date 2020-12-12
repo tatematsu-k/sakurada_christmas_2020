@@ -9,14 +9,16 @@ class LineEventManager
 
       def call
         ::User.transaction do
-          user.create_gift_requesting!
           super
+          user.create_gift_requesting!
         end
       end
 
       private
 
       def message_attributes
+        return already_gift_requesting if user.gift_requesting
+
         first_text = <<~EOS
           了解です！
           次のステップでプレゼントの情報を教えてください！
@@ -52,6 +54,21 @@ class LineEventManager
             text: second_text,
           },
         ]
+      end
+
+      def already_gift_requesting
+        text =
+          <<~EOS
+            既にプレゼント登録されています！
+            プレゼント内容の確認は「#{Confirm::KEYWORD}」と入力してください！
+            プレゼント内容をキャンセルしたい時は「#{Cancel::KEYWORD}」と入力してください！
+          EOS
+            .chomp
+
+        {
+          type: 'text',
+          text: text,
+        }
       end
     end
   end
