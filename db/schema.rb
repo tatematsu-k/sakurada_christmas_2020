@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_113010) do
+ActiveRecord::Schema.define(version: 2020_12_12_113506) do
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_follow_unfollows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_follow_id"
+    t.bigint "user_follow_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_follow_unfollows_on_created_at"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_follows_on_created_at"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_gift_requesting_group_message_usings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_gift_requesting_id"
-    t.bigint "user_text_message_id"
+    t.bigint "user_gift_requesting_id", null: false
+    t.bigint "user_text_message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_gift_requesting_group_message_usings_on_created_at"
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_gift_requesting_private_message_usings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_gift_requesting_id"
-    t.bigint "user_text_message_id"
+    t.bigint "user_gift_requesting_id", null: false
+    t.bigint "user_text_message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_gift_requesting_private_message_usings_on_created_at"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_gift_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_gift_requestings_on_created_at"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_113010) do
   end
 
   create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
