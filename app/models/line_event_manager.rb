@@ -3,14 +3,16 @@ class LineEventManager < ApplicationModel
 
   def call
     line_source.save!
-    case event
-    when Line::Bot::Event::Follow
-      Follow.factory(event, line_source: line_source).call
-    when Line::Bot::Event::Join
-      Join.factory(event, line_source: line_source).call
-    when Line::Bot::Event::Message
-      Message.factory(event).call
-    end
+    klass =
+      case event
+      when Line::Bot::Event::Follow
+        Follow
+      when Line::Bot::Event::Join
+        Join
+      when Line::Bot::Event::Message
+        Message
+      end
+    klass.factory(event, line_source: line_source).call
   end
 
   private
