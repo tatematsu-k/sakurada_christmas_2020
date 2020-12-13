@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_002031) do
+ActiveRecord::Schema.define(version: 2020_12_13_003710) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2020_12_13_002031) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_groups_on_created_at"
     t.index ["group_uid"], name: "index_groups_on_group_uid", unique: true
+  end
+
+  create_table "user_archives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_user_archives_on_created_at"
+    t.index ["user_id"], name: "index_user_archives_on_user_id"
   end
 
   create_table "user_follow_unfollows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -116,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_002031) do
   add_foreign_key "group_postback_requestings", "users"
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
+  add_foreign_key "user_archives", "users"
   add_foreign_key "user_follow_unfollows", "user_follows"
   add_foreign_key "user_follows", "users"
   add_foreign_key "user_gift_requesting_group_message_usings", "user_gift_requestings", name: "fk_user_gift_requesting_group_message_usings_1"
