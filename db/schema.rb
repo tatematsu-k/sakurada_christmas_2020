@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_051801) do
+ActiveRecord::Schema.define(version: 2020_12_13_052403) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_051801) do
     t.bigint "shuffle_gift_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "target"
+    t.string "target", null: false
     t.index ["created_at"], name: "index_shuffle_gift_publishings_on_created_at"
     t.index ["shuffle_gift_id"], name: "index_shuffle_gift_publishings_on_shuffle_gift_id", unique: true
   end
