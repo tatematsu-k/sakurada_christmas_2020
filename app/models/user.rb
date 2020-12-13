@@ -14,6 +14,14 @@ class User < ApplicationRecord
            to: :gift_requesting
   delegate :name, allow_nil: true, to: :info
 
+  scope :active, -> {
+    left_joins(:archive).merge(Archive.where(id: nil))
+  }
+
+  scope :gift_requested, -> {
+    joins(gift_requesting: [:group_message_using, :private_message_using])
+  }
+
   def unfollow?
     follow&.unfollow.present?
   end
