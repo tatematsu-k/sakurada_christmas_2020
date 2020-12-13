@@ -9,6 +9,9 @@ class LineEventManager
     def call
       ::User.transaction do
         if valid?
+          group.create_start_christmas_event!(
+            user: user,
+          )
         else
         end
 
