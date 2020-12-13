@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one :archive
   has_one :follow
   has_one :info
   has_one :gift_requesting
