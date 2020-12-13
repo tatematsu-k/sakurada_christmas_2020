@@ -78,7 +78,7 @@ class LineEventManager
       {
         type: "postback",
         label: "準備完了！",
-        data: "action=#{PostBack::StartChristmas::KEYWORD}"
+        data: "action=#{Postback::StartChristmas::KEYWORD}"
       }
     end
   end
