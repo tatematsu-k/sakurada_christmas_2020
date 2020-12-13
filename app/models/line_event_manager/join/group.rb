@@ -10,7 +10,6 @@ class LineEventManager
     end
 
     def call
-      save!
       p "request with: #{message_attributes}"
       res = client.reply_message(reply_token, message_attributes)
       p res
@@ -37,10 +36,7 @@ class LineEventManager
           type: 'text',
           text: second_text,
         },
-        {
-          type: 'text',
-          text: third_text,
-        }
+        third_attribute
       ]
     end
 
@@ -62,11 +58,28 @@ class LineEventManager
         .chomp
     end
 
-    def third_text
-      <<~EOS
-        準備ができたらみんなで「プレゼント交換開始！」ってこのグループに送ってね！
-      EOS
-        .chomp
+    def third_attribute
+      {
+        type: "template",
+        altText: "This is a buttons template",
+        template: {
+          type: "buttons",
+          thumbnailImageUrl: "https://stat.ameba.jp/user_images/20181227/18/bbod/67/1b/j/o0612040814328346553.jpg",
+          imageAspectRatio: "rectangle",
+          imageSize: "cover",
+          text: "全員の準備が終わったらボタンを押してください！",
+          defaultAction: third_action,
+          actions: [third_action]
+        }
+      }
+    end
+
+    def third_action
+      {
+        type: "postback",
+        label: "準備完了！",
+        data: "action=#{PostBack::StartChristmas::KEYWORD}"
+      }
     end
   end
 end

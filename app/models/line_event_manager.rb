@@ -13,6 +13,8 @@ class LineEventManager < ApplicationModel
         Join
       when Line::Bot::Event::Message
         Message
+      when Line::Bot::Event::Postback
+        Postback
       end
     klass.factory(event, line_source: line_source).call
   end
