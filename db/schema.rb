@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_030718) do
+ActiveRecord::Schema.define(version: 2020_12_13_045738) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -27,24 +27,20 @@ ActiveRecord::Schema.define(version: 2020_12_13_030718) do
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "users_id", null: false
     t.bigint "user_id", null: false
     t.index ["created_at"], name: "index_group_shuffle_events_on_created_at"
     t.index ["group_id"], name: "index_group_shuffle_events_on_group_id", unique: true
     t.index ["user_id"], name: "index_group_shuffle_events_on_user_id"
-    t.index ["users_id"], name: "index_group_shuffle_events_on_users_id"
   end
 
   create_table "group_start_christmas_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "users_id", null: false
     t.bigint "user_id", null: false
     t.index ["created_at"], name: "index_group_start_christmas_events_on_created_at"
     t.index ["group_id"], name: "index_group_start_christmas_events_on_group_id", unique: true
     t.index ["user_id"], name: "index_group_start_christmas_events_on_user_id"
-    t.index ["users_id"], name: "index_group_start_christmas_events_on_users_id"
   end
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -64,6 +60,22 @@ ActiveRecord::Schema.define(version: 2020_12_13_030718) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_groups_on_created_at"
     t.index ["group_uid"], name: "index_groups_on_group_uid", unique: true
+  end
+
+  create_table "shuffle_gift_publishing_delivering", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "shuffle_gift_publishing_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "idx_shuffle_gift_publishing_delivering_2"
+    t.index ["shuffle_gift_publishing_id"], name: "idx_shuffle_gift_publishing_delivering_1", unique: true
+  end
+
+  create_table "shuffle_gift_publishings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "shuffle_gift_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_shuffle_gift_publishings_on_created_at"
+    t.index ["shuffle_gift_id"], name: "index_shuffle_gift_publishings_on_shuffle_gift_id", unique: true
   end
 
   create_table "shuffle_gifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -162,6 +174,8 @@ ActiveRecord::Schema.define(version: 2020_12_13_030718) do
   add_foreign_key "group_start_christmas_events", "users"
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
+  add_foreign_key "shuffle_gift_publishing_delivering", "shuffle_gift_publishings", name: "fk_shuffle_gift_publishing_delivering_1"
+  add_foreign_key "shuffle_gift_publishings", "shuffle_gifts"
   add_foreign_key "shuffle_gifts", "user_gift_requestings"
   add_foreign_key "shuffle_gifts", "users"
   add_foreign_key "user_archives", "users"
