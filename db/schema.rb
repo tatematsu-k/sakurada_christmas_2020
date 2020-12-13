@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_010431) do
+ActiveRecord::Schema.define(version: 2020_12_13_013908) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2020_12_13_010431) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_groups_on_created_at"
     t.index ["group_uid"], name: "index_groups_on_group_uid", unique: true
+  end
+
+  create_table "shuffle_gifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "user_gift_requesting_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_shuffle_gifts_on_created_at"
+    t.index ["user_gift_requesting_id"], name: "index_shuffle_gifts_on_user_gift_requesting_id", unique: true
+    t.index ["user_id"], name: "index_shuffle_gifts_on_user_id", unique: true
   end
 
   create_table "user_archives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -142,6 +152,8 @@ ActiveRecord::Schema.define(version: 2020_12_13_010431) do
   add_foreign_key "group_start_christmas_events", "groups"
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
+  add_foreign_key "shuffle_gifts", "user_gift_requestings"
+  add_foreign_key "shuffle_gifts", "users"
   add_foreign_key "user_archives", "users"
   add_foreign_key "user_follow_unfollows", "user_follows"
   add_foreign_key "user_follows", "users"
