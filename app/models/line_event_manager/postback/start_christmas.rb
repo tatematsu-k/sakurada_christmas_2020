@@ -5,5 +5,9 @@ class LineEventManager
     def self.match?(action:)
       action == KEYWORD
     end
+
+    def call
+      
+    end
   end
 end

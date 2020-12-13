@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_115502) do
+ActiveRecord::Schema.define(version: 2020_12_13_002031) do
+
+  create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.string "action", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_group_postback_requestings_on_created_at"
+    t.index ["group_id"], name: "index_group_postback_requestings_on_group_id"
+    t.index ["user_id"], name: "index_group_postback_requestings_on_user_id"
+  end
 
   create_table "group_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -101,6 +112,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_115502) do
     t.index ["line_uid"], name: "index_users_on_line_uid", unique: true
   end
 
+  add_foreign_key "group_postback_requestings", "groups"
+  add_foreign_key "group_postback_requestings", "users"
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
   add_foreign_key "user_follow_unfollows", "user_follows"
