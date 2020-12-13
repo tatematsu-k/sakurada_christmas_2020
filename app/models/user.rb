@@ -19,7 +19,7 @@ class User < ApplicationRecord
   }
 
   scope :gift_requested, -> {
-    joins(gift_requesting: [:group_message_using, :private_message_using])
+    joins(gift_requesting: [:group_message_using, :private_message_using]).distinct
   }
 
   def unfollow?
