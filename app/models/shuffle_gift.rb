@@ -1,6 +1,7 @@
 class ShuffleGift < ApplicationRecord
   belongs_to :user
   belongs_to :user_gift_requesting, class_name: "User::GiftRequesting"
+  has_one :publishing
 
   validate :not_same_user_validity
 
