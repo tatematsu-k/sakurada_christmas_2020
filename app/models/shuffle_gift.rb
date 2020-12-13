@@ -16,7 +16,10 @@ class ShuffleGift < ApplicationRecord
     end
   rescue ActiveRecord::RecordInvalid
     p "retry"
-    shuffle!
+    transaction do
+      ShuffleGift.destroy_all
+      shuffle!
+    end
   end
 
   private
