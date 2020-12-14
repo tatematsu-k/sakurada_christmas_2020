@@ -1,6 +1,6 @@
 class LineEventManager
   class Postback < Base
-    ACTION_CLASSES = [Present, StartChristmas]
+    ACTION_CLASSES = [PresentOpen, StartChristmas]
 
     def self.factory(event, line_source:)
       params = data_parse(event["postback"]["data"])

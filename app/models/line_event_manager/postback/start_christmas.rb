@@ -63,12 +63,12 @@ class LineEventManager
             defaultAction: {
               type: "postback",
               label: "まず一人目は？",
-              data: "action=#{Postback::Present::KEYWORD}&target=1",
+              data: "action=#{Postback::PresentOpen::KEYWORD}&target=1",
             },
             actions: [{
               type: "postback",
               label: "まず一人目は？",
-              data: "action=#{Postback::Present::KEYWORD}&target=1",
+              data: "action=#{Postback::PresentOpen::KEYWORD}&target=1",
             }]
           }
         }
