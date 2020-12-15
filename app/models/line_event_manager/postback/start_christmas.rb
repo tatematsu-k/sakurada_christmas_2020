@@ -51,27 +51,7 @@ class LineEventManager
           packageId: 11537,
           stickerId: 52002748,
         },
-        {
-          type: "template",
-          altText: "This is a buttons template",
-          template: {
-            type: "buttons",
-            thumbnailImageUrl: "https://supenavi.com/blog/wp-content/uploads/2017/10/pixta_2066046_M.jpg",
-            imageAspectRatio: "rectangle",
-            imageSize: "cover",
-            text: "クリスマスプレゼント交換会の始まりだよ！",
-            defaultAction: {
-              type: "postback",
-              label: "まず一人目は？",
-              data: "action=#{Postback::PresentOpen::KEYWORD}&target=1",
-            },
-            actions: [{
-              type: "postback",
-              label: "まず一人目は？",
-              data: "action=#{Postback::PresentOpen::KEYWORD}&target=1",
-            }]
-          }
-        }
+        Postback::Answer.new(target: 0).next_present_open_message_attribute
       ])
     end
 

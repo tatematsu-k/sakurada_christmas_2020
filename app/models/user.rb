@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one :follow
   has_one :info
   has_one :gift_requesting
+  has_one :shuffle_gift
   has_many :text_messages
   has_many :group_text_messages, class_name: "Group::TextMessage"
   has_many :group_postback_requestings, class_name: "Group::PostbackRequesting"

@@ -5,6 +5,10 @@ class ShuffleGift < ApplicationRecord
 
   validate :not_same_user_validity
 
+  scope :unpublished, -> {
+    left_joins(:publishing).merge(ShuffleGift::Publishing.where(id: nil))
+  }
+
   def self.shuffle!
     raise unless User.active.count == User.active.gift_requested.count
     users = User.active.to_a.shuffle
