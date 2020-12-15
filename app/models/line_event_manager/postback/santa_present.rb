@@ -20,7 +20,7 @@ class LineEventManager
       text = <<~EOS
         今日はありがとうございます！
         楽しんでくれていたら嬉しいです#{0x10007F.chr('UTF-8')}
-        既にあっている方、まだお会いしたことない方いらっしゃいますが今後とも仲良くしていただけるとうれしです！#{0x100039.chr('UTF-8')}
+        既に会っている方、まだお会いしたことない方いらっしゃいますが今後とも仲良くしていただけるとうれしいです！#{0x100039.chr('UTF-8')}
 
         最後にささやかですがよこぴサンタからの贈り物も送らせてもらいました♪
         素敵なクリスマスを!#{0x10009D.chr('UTF-8')}
@@ -34,8 +34,8 @@ class LineEventManager
         },
         {
           type: "image",
-          originalContentUrl: "http://drive.google.com/uc?export=view&id=16yGhP43nAQ9kcGfrTO5HpeZFanK0WRbK",
-          previewImageUrl: "http://drive.google.com/uc?export=view&id=1tFJjWMYvPZCfcR6t2ZgbiXNSEUvkiizL"
+          originalContentUrl: "https://drive.google.com/uc?export=view&id=16yGhP43nAQ9kcGfrTO5HpeZFanK0WRbK",
+          previewImageUrl: "https://drive.google.com/uc?export=view&id=1tFJjWMYvPZCfcR6t2ZgbiXNSEUvkiizL"
         },
         {
           type: 'text',

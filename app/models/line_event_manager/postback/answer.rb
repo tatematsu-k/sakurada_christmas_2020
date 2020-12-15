@@ -124,11 +124,11 @@ class LineEventManager
     def santa_present_message_attribute
       text = <<~EOS
         全員終わってしまいましたね...
-        よこぴサンタがこちらをのぞいている...
+        よこぴサンタがこちらをのぞいているよ...
       EOS
         .chomp
       label = "どうした？"
-      data = "actions=#{Postback::SantaPresent::KEYWORD}"
+      data = "action=#{Postback::SantaPresent::KEYWORD}"
 
       {
         type: "template",
