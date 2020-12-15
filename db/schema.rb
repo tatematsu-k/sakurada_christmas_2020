@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_052403) do
+ActiveRecord::Schema.define(version: 2020_12_15_052403) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_052403) do
     t.index ["group_uid"], name: "index_groups_on_group_uid", unique: true
   end
 
-  create_table "shuffle_gift_publishing_delivering", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "shuffle_gift_publishing_deliverings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "shuffle_gift_publishing_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_052403) do
   add_foreign_key "group_start_christmas_events", "users"
   add_foreign_key "group_text_messages", "groups"
   add_foreign_key "group_text_messages", "users"
-  add_foreign_key "shuffle_gift_publishing_delivering", "shuffle_gift_publishings", name: "fk_shuffle_gift_publishing_delivering_1"
+  add_foreign_key "shuffle_gift_publishing_deliverings", "shuffle_gift_publishings", name: "fk_shuffle_gift_publishing_delivering_1"
   add_foreign_key "shuffle_gift_publishings", "shuffle_gifts"
   add_foreign_key "shuffle_gifts", "user_gift_requestings"
   add_foreign_key "shuffle_gifts", "users"
