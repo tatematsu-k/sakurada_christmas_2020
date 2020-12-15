@@ -60,7 +60,7 @@ class LineEventManager
 
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "よこぴサンタからのメッセージが来ているよ",
         template: {
           type: "buttons",
           thumbnailImageUrl: "https://pinto.style/lacne/ownedmedia/upload/18-10-14-ct03.jpg",

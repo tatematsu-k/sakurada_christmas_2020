@@ -49,7 +49,7 @@ class LineEventManager
 
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "よこぴサンタからのメッセージが来ているよ",
         template: {
           type: "buttons",
           thumbnailImageUrl: thumbnail_image_url,

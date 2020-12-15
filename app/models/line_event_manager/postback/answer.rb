@@ -39,7 +39,7 @@ class LineEventManager
 
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "よこぴサンタからのメッセージが来ているよ",
         template: {
           type: "buttons",
           thumbnailImageUrl: thumbnail_image_url,
@@ -132,7 +132,7 @@ class LineEventManager
 
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "よこぴサンタからのメッセージが来ているよ",
         template: {
           type: "buttons",
           thumbnailImageUrl: "https://illustrain.com/img/work/2016/illustrain01-christmas20.png",

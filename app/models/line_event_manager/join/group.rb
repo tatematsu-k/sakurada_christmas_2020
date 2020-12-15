@@ -61,7 +61,7 @@ class LineEventManager
     def third_attribute
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "よこぴサンタからのメッセージが来ているよ",
         template: {
           type: "buttons",
           thumbnailImageUrl: "https://stat.ameba.jp/user_images/20181227/18/bbod/67/1b/j/o0612040814328346553.jpg",

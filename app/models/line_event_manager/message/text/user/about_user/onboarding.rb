@@ -25,7 +25,7 @@ class LineEventManager
 
         {
           type: "template",
-          altText: "名前の確認モーダルです",
+          altText: "よこぴサンタからのメッセージが来ているよ",
           template: {
             type: "confirm",
             text: confirm_message,
