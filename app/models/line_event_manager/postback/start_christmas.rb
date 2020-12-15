@@ -31,7 +31,7 @@ class LineEventManager
 
     def valid?
       # 本当はgroup内のuserに絞って判定をしたいがGroup内のuser idを取得するAPIは申請しないといけないので
-      User.active.count == User.active.gift_requested.count
+      User::Follow::Unfollow.count == 0 && User.active.count == User.active.gift_requested.count
     end
 
     def reply_shuffle_requesting
