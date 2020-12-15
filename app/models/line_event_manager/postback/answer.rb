@@ -66,7 +66,10 @@ class LineEventManager
       if ShuffleGift::Publishing.count == 0
         next_present_open_message_attribute
       elsif ShuffleGift.unpublished.count == 0
-        answer_message_attribute
+        [
+          answer_message_attribute,
+          santa_present_message_attribute
+        ]
       else
         [
           answer_message_attribute,
@@ -116,6 +119,38 @@ class LineEventManager
         "https://static.retrip.jp/article/69670/images/6967083b9bb6c-22ee-40da-a763-caf6500451eb_m.jpg",
         "https://www.sparkling-lights.jp/labo/assets/uploads/2015/08/history2-01.jpg"
       ][target - 1]
+    end
+
+    def santa_present_message_attribute
+      text = <<~EOS
+        全員終わってしまいましたね...
+        よこぴサンタがこちらをのぞいている...
+      EOS
+        .chomp
+      label = "どうした？"
+      data = "actions=#{Postback::SantaPresent::KEYWORD}"
+
+      {
+        type: "template",
+        altText: "This is a buttons template",
+        template: {
+          type: "buttons",
+          thumbnailImageUrl: "https://illustrain.com/img/work/2016/illustrain01-christmas20.png",
+          imageAspectRatio: "rectangle",
+          imageSize: "cover",
+          text: text,
+          defaultAction: {
+            type: "postback",
+            label: label,
+            data: data,
+          },
+          actions: [{
+            type: "postback",
+            label: label,
+            data: data,
+          }]
+        }
+      }
     end
   end
 end
