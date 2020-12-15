@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_052403) do
+ActiveRecord::Schema.define(version: 2020_12_15_095256) do
 
   create_table "group_postback_requestings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "group_id", null: false
@@ -148,6 +148,22 @@ ActiveRecord::Schema.define(version: 2020_12_15_052403) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_user_infos_on_created_at"
     t.index ["user_id"], name: "index_user_infos_on_user_id", unique: true
+  end
+
+  create_table "user_santa_present_deliverings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_santa_present_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_santa_present_id"], name: "index_user_santa_present_deliverings_on_user_santa_present_id", unique: true
+  end
+
+  create_table "user_santa_presents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "url", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["url"], name: "index_user_santa_presents_on_url", unique: true
+    t.index ["user_id"], name: "index_user_santa_presents_on_user_id", unique: true
   end
 
   create_table "user_text_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
