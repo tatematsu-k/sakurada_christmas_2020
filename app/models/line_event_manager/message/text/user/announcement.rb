@@ -5,6 +5,8 @@ class LineEventManager
     end
 
     def message_attributes
+      return @message_attributes if @message_attributes
+
       first_text = <<~EOS
         あけましておめでとうございます！
         今年もよろしくお願いします#{0x10007F.chr('UTF-8')}
@@ -19,44 +21,45 @@ class LineEventManager
       EOS
         .chomp
 
-      [
-        {
-          type: "text",
-          text: first_text,
-        },
-        {
-          type: "text",
-          text: second_text,
-        },
-        {
-          type: "template",
-          altText: "よこぴサンタからのメッセージが来ているよ",
-          template: {
-            type: "buttons",
-            thumbnailImageUrl: "https://i.ytimg.com/vi/vV47XHp84t4/hqdefault.jpg",
-            imageAspectRatio: "rectangle",
-            imageSize: "cover",
-            text: "当日までに登録してね。ホッホッホー",
-            actions: [
-              {
-                type: "message",
-                label: "プレゼントを登録！",
-                text: Message::Text::User::Gift::Onboarding::KEYWORD,
-              },
-              {
-                type: "message",
-                label: "プレゼント内容を確認！",
-                text: Message::Text::User::Gift::Confirm::KEYWORD,
-              },
-              {
-                type: "message",
-                label: "プレゼント内容を変更！",
-                text: Message::Text::User::Gift::Cancel::KEYWORD,
-              },
-            ],
+      @message_attributes ||=
+        [
+          {
+            type: "text",
+            text: first_text,
+          },
+          {
+            type: "text",
+            text: second_text,
+          },
+          {
+            type: "template",
+            altText: "よこぴサンタからのメッセージが来ているよ",
+            template: {
+              type: "buttons",
+              thumbnailImageUrl: "https://i.ytimg.com/vi/vV47XHp84t4/hqdefault.jpg",
+              imageAspectRatio: "rectangle",
+              imageSize: "cover",
+              text: "当日までに登録してね。ホッホッホー",
+              actions: [
+                {
+                  type: "message",
+                  label: "プレゼントを登録！",
+                  text: Message::Text::User::Gift::Onboarding::KEYWORD,
+                },
+                {
+                  type: "message",
+                  label: "プレゼント内容を確認！",
+                  text: Message::Text::User::Gift::Confirm::KEYWORD,
+                },
+                {
+                  type: "message",
+                  label: "プレゼント内容を変更！",
+                  text: Message::Text::User::Gift::Cancel::KEYWORD,
+                },
+              ],
+            }
           }
-        }
-      ]
+        ]
     end
   end
 
