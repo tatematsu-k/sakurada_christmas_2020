@@ -61,11 +61,11 @@ class LineEventManager
           }
         ]
     end
-  end
 
-  def call
-    User.all.each do |u|
-      push_message(u, message_attributes)
+    def call
+      ::User.all.each do |u|
+        push_message(u, message_attributes)
+      end
     end
   end
 end
