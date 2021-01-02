@@ -6,8 +6,4 @@ Jets.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # Docs: http://rubyonjets.com/docs/email-sending/
   # config.action_mailer.raise_delivery_errors = false
-  config.function.vpc_config = {
-    security_group_ids: ENV["SECURITY_GROUP_IDS"].split(","),
-    subnet_ids: ENV["SUBNET_IDS"].split(","),
-  }
 end
