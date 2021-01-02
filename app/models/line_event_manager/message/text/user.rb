@@ -4,7 +4,7 @@ class LineEventManager
 
     def self.factory(text:, line_source:, **args)
       klass =
-        [AboutUser, Gift, AboutMe, Unknown]
+        [AboutUser, Gift, AboutMe, Announcement, Unknown]
           .select{ |k| k.match?(text, line_source: line_source) }
           .first
       klass.factory(text: text, line_source: line_source, **args)
